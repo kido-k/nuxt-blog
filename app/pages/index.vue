@@ -35,9 +35,9 @@ import Cookies from 'universal-cookie'
 
 export default {
   asyncData({ redirect, store }) {
-    // if (store.getters['user']) {
-    //   redirect('/posts/')
-    // }
+    if (store.getters['user']) {
+      redirect('/posts/')
+    }
     return {
       isCreateMode: false,
       formData: {
