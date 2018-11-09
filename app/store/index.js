@@ -1,3 +1,4 @@
+export const strict = false
 import moment from '~/plugins/moment'
 
 export const state = () => ({
