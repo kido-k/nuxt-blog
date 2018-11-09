@@ -9,7 +9,8 @@
       <el-table
         :data="showPosts"
         style="width: 100%"
-        class="table">
+        class="table"
+        @row-click="handleClick">
         <el-table-column
           prop="title"
           label="タイトル"
@@ -29,28 +30,21 @@
 
 <script>
 export default {
+  async asyncData({ store }) {
+    await store.dispatch('posts/fetchPosts')
+  },
   computed: {
     showPosts() {
-      return [
-        {
-          id: '001',
-          title: 'How to development Nuxt.js Application',
-          body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
-          created_at: '2018/08/10 12:00:00',
-          user: {
-            id: 'potato4d'
-          }
-        },
-        {
-          id: '002',
-          title: 'How to development Nuxt.js Application',
-          body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
-          created_at: '2018/08/10 12:00:00',
-          user: {
-            id: 'potato4d'
-          }
-        }
-      ]
+      return this.posts.map(post => {
+        post.created_at = moment(post.created_at).format('YYYY/MM/DD HH:mm:ss')
+        return post
+      })
+    },
+    ...mapGetters('posts', ['posts'])
+  },
+  methods: {
+    handleClick(post) {
+      this.$router.push(`/posts/${post.id}`)
     }
   }
 }

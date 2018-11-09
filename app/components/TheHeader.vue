@@ -16,7 +16,7 @@
     <el-menu-item
       v-if="user"
       :route="{path:`/users/${user.id}`}"
-      index="3"
+      index="4"
       style="float: right;">
       <span>{{ user.id }}</span>
     </el-menu-item>

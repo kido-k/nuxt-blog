@@ -35,7 +35,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   asyncData({ redirect, store }) {
-    if (!store.getter['user']) {
+    if (!store.getters['user']) {
       redirect('/')
     }
     return {
@@ -46,7 +46,19 @@ export default {
     }
   },
   computed: {
-    // publish() {}
+    ...mapGetters(['user'])
+  },
+  methods: {
+    async publish() {
+      const payload = {
+        user: this.user,
+        ...this.formData
+      }
+      await this.pubilsh.Post([payload])
+      this.$router.push('/posts')
+    },
+    ...mapActions('users', ['updateUser']),
+    ...mapActions('posts', ['publishPost'])
   }
 }
 </script>

@@ -14,14 +14,15 @@
             placeholder=""/>
         </div>
         <div class="form-content">
-          <el-checkbox v-model="isCreateModel">
+          <el-checkbox v-model="isCreateMode">
             アカウントを作成する
           </el-checkbox>
         </div>
         <div class="text-right">
           <el-button
             type="primary"
-            @click="handleClickSubmit">{{ buttonText }}</el-button>
+            @click="handleClickSubmit">{{ buttonText }}
+          </el-button>
         </div>
       </form>
     </el-card>
