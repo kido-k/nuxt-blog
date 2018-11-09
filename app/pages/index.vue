@@ -34,7 +34,10 @@ import { mapGetters, mapActions } from 'vuex'
 import Cookies from 'universal-cookie'
 
 export default {
-  asyncData() {
+  asyncData({ redirect, store }) {
+    // if (store.getters['user']) {
+    //   redirect('/posts/')
+    // }
     return {
       isCreateMode: false,
       formData: {

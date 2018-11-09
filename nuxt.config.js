@@ -3,6 +3,9 @@ const pkg = require('./package')
 module.exports = {
   mode: 'universal',
   srcDir: 'app',
+  router: {
+    middleware: ['auth-cookie']
+  },
 
   head: {
     title: pkg.name,
@@ -15,13 +18,6 @@ module.exports = {
   },
 
   loading: { color: '#fff' },
-  axios: {
-    baseURL: 'https://nuxt-blog-service-e3b0b.firebaseio.com'
-  },
-
-  router: {
-    middleware: ['auth-cookie']
-  },
 
   css: ['element-ui/lib/theme-chalk/index.css'],
 
@@ -30,20 +26,6 @@ module.exports = {
   modules: ['@nuxtjs/axios'],
 
   axios: {
-    // See https://github.com/nuxt-community/axios-module#options
-  },
-
-  build: {
-    extend(config, ctx) {
-      // Run ESLint on save
-      if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
-      }
-    }
+    baseURL: 'https://nuxt-blog-service-e3b0b.firebaseio.com'
   }
 }

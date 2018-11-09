@@ -4,7 +4,6 @@
     <div class="wrapper">
       <nuxt class="container"/>
     </div>
-    <nuxt/>
   </div>
 </template>
 

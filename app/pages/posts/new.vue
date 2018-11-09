@@ -54,7 +54,7 @@ export default {
         user: this.user,
         ...this.formData
       }
-      await this.pubilsh.Post([payload])
+      await this.pubilshPost({ payload })
       this.$router.push('/posts')
     },
     ...mapActions('users', ['updateUser']),
