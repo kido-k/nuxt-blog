@@ -13,14 +13,20 @@
       投稿一覧
     </el-menu-item>
 
-    <no-ssr>
-      <el-menu-item
-        :route="{path:'/'}"
-        index="4"
-        style="float: right;">
-        <span>ログイン</span>
-      </el-menu-item>
-    </no-ssr>
+    <el-menu-item
+      v-if="user"
+      :route="{path:`/users/${user.id}`}"
+      index="3"
+      style="float: right;">
+      <span>{{ user.id }}</span>
+    </el-menu-item>
+    <el-menu-item
+      v-else
+      :route="{path:'/'}"
+      index="4"
+      style="float: right;">
+      <span>ログイン</span>
+    </el-menu-item>
     <el-menu-item
       :route="{path:'/posts/new'}"
       index="5"
@@ -29,3 +35,13 @@
     </el-menu-item>
   </el-menu>
 </template>
+
+<script>
+import { mapGetters } from 'vuex'
+
+export default {
+  computed: {
+    ...mapGetters(['user'])
+  }
+}
+</script>
