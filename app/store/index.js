@@ -8,7 +8,8 @@ export const state = () => ({
 
 export const getters = {
   isLoggedIn: state => state.isLoggedIn,
-  user: state => state.user
+  user: state => (state.user ? Object.assign({ likes: [] }, state.user) : null),
+  posts: state => state.posts.map(post => Object.assign({ likes: [] }, post))
 }
 
 export const mutations = {
@@ -31,5 +32,23 @@ export const actions = {
     const user = await this.$axios.$get(`/users/${id}.json`)
     if (!user.id) throw new Error('Invalid user')
     commit('setUser', { user })
+  },
+  async addLikeLogToUser({ commit }, { user, post }) {
+    user.likes.push({
+      created_at: moment().format(),
+      user_id: user.id,
+      post_id: post.id
+    })
+    const newUser = await this.$axios.$put(`/users/${user.id}.json`, user)
+    commit('setUser', { user: newUser })
+  },
+  async addLikeToPost({ commit }, { user, post }) {
+    post.likes.push({
+      created_at: moment().format(),
+      user_id: user.id,
+      post_id: post.id
+    })
+    const newPost = await this.$axios.$put(`/posts/${post.id}.json`, post)
+    commit('updatePost', { post: newPost })
   }
 }
