@@ -63,8 +63,8 @@ export default {
 }
 </script>
 
-<style>
-.posts-page el-table__row {
+<style scoped>
+.posts-page .el-table__row {
   cursor: pointer;
 }
 </style>

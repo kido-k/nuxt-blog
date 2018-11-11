@@ -17,9 +17,8 @@
             type="warning"
             round
             @click="unlike">
-            <span class="el-icon-star-on">
-              <span>{{ post.likes.length }}</span>
-            </span>
+            <span class="el-icon-star-on"/>
+            <span>{{ post.likes.length }}</span>
           </el-button>
           <el-button
             v-else
@@ -91,7 +90,7 @@ export default {
 </script>
 
 <style>
-.posts-page el-table__row {
+.posts-page .el-table__row {
   cursor: pointer;
 }
 </style>
